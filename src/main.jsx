@@ -115,12 +115,7 @@ function App() {
       <section className="hero shell">
         <div className="hero-copy"><div className="eyebrow"><span className="eyebrow-line" />{t.eyebrow}</div><h1>{t.hero1}<br/><span>{t.hero2}</span></h1><p className="hero-intro">{t.intro}</p><div className="hero-actions"><a className="button button-primary" href="#projects">{t.ctaProjects}<ArrowDownRight size={17}/></a><a className="button button-quiet" href="#contact">{t.ctaContact}<ArrowUpRight size={17}/></a></div><div className="hero-proof"><div className="proof-avatars"><span>W</span><span>UX</span><span>AI</span></div><span>{isFa ? 'توسعه وب، تجربه کاربری و راهکارهای کاربردی' : 'Web, user experience & practical solutions'}</span></div></div>
         <div className="hero-art" aria-label="Abstract digital workspace illustration"><div className="art-orbit orbit-one"/><div className="art-orbit orbit-two"/><div className="art-core"><div className="core-top"><span/><span/><span/><b>studio / 01</b></div><div className="core-content"><div className="code-line short"/><div className="code-line medium"/><div className="code-line long"/><div className="code-line medium accent"/><div className="code-line short"/><div className="code-cursor"/></div><div className="core-footer"><span>BUILD</span><span>·</span><span>TEST</span><span>·</span><span>IMPROVE</span></div></div><div className="float-card float-card-top"><span className="float-icon purple"><Gauge size={17}/></span><span><b>UX / UI</b><small>Clearer journeys</small></span><i className="status-dot"/></div><div className="float-card float-card-bottom"><span className="float-icon green"><Zap size={17}/></span><span><b>AI workflow</b><small>Less repetitive work</small></span><ArrowUpRight size={15}/></div><div className="art-cross cross-a">+</div><div className="art-cross cross-b">+</div><div className="art-caption">IDEAS → INTERFACES → IMPACT</div></div>
-        <img
-  src={`https://image.thum.io/get/width/1200/crop/800/noanimate/${project.url}`}
-  alt={`${project.title.en} website screenshot`}
-  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-  loading="lazy"
-/>
+        <iframe src={project.url} title={`${project.title.en} live website preview`} loading="lazy" tabIndex="-1" aria-hidden="true" />
       </section>
 
       <section id="projects" className="section shell"><div className="section-head"><div><div className="section-label"><span>01</span>{t.sectionLabel}</div><h2>{t.projectsTitle}</h2></div><p>{t.projectsIntro}</p></div>
@@ -128,7 +123,13 @@ function App() {
           <div className="project-visual">
             <div className="project-topline"><span>PROJECT / {project.number}</span><span className={project.visual === 'dashboard' ? 'concept-tag' : 'live-tag'}>{project.visual === 'dashboard' ? t.concept : 'LIVE SITE PREVIEW'}</span></div>
             {project.url ? <div className="live-preview">
-              <iframe src={project.url} title={`${project.title.en} live website preview`} loading="lazy" tabIndex="-1" aria-hidden="true" />
+              <img
+  src={`https://api.microlink.io/?url=${encodeURIComponent(project.url)}&screenshot=true&meta=false&embed=screenshot.url`}
+  alt={`${project.title.en} website screenshot`}
+  loading="lazy"
+  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+/>
               <a className="preview-open" href={project.url} target="_blank" rel="noreferrer">{t.live} <ExternalLink size={13}/></a>
             </div> : <div className="dash-mock"><div className="dash-sidebar"><div className="dash-logo">N<span>.</span></div><span className="dash-side-active">▦</span><span>◷</span><span>⌁</span><span>⚙</span></div><div className="dash-main"><div className="dash-title"><span>Business overview</span><b>↗</b></div><div className="dash-metrics"><div><small>VISITORS</small><b>2,480</b><i>↗ 12.8%</i></div><div><small>CONVERSION</small><b>3.6%</b><i>↗ 0.8%</i></div></div><div className="dash-chart"><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/></div><div className="dash-bottom"><span/><span/><span/></div></div><span className="concept-watermark">CONCEPT ONLY</span></div>}
           </div>
