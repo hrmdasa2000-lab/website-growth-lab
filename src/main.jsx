@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowDownRight, ArrowUpRight, Code2, Globe2, Layers3, Zap, Menu, X, CheckCircle2, ExternalLink, Mail, Sparkles, MonitorSmartphone, Workflow, Gauge, ShieldCheck, Send, Copy, Check } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, Code2, Globe2, Layers3, Zap, Menu, X, CheckCircle2, ExternalLink, Github, Mail, Sparkles, MonitorSmartphone, Workflow, Gauge, ShieldCheck, Send, Copy, Check, Moon, Sun } from 'lucide-react';
 import './styles.css';
 
 const projects = [
@@ -72,12 +72,14 @@ const copy = {
 
 function App() {
   const [lang, setLang] = useState('en');
+  const [theme, setTheme] = useState(() => { try { return localStorage.getItem('portfolio-theme') || 'dark'; } catch (_) { return 'dark'; } });
   const [mobileOpen, setMobileOpen] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', message: '' });
   const [formState, setFormState] = useState({ status: '', error: '' });
   const [copied, setCopied] = useState(false);
   const t = copy[lang];
   const isFa = lang === 'fa';
+  function toggleTheme() { setTheme(current => { const next = current === 'dark' ? 'light' : 'dark'; try { localStorage.setItem('portfolio-theme', next); } catch (_) {} return next; }); }
   const emailAddress = 'hello@example.com'; // Replace with your professional email before publishing.
 
   function switchLanguage(next) {
@@ -99,14 +101,14 @@ function App() {
     catch (_) { window.location.href = `mailto:${emailAddress}`; }
   }
 
-  return <div className={`site ${isFa ? 'rtl' : ''}`}>
+  return <div className={`site theme-${theme} ${isFa ? 'rtl' : ''}`}>
     <div className="topline"><span className="topline-dot" /> {t.availability}<span className="topline-right">{t.eyebrow}</span></div>
     <header className="header shell">
       <a className="brand" href="#top" aria-label="Home"><span className="brand-mark">D<span>.</span></span><span className="brand-text">DEV<span> / WEB + AI</span></span></a>
       <nav className={`nav ${mobileOpen ? 'nav-open' : ''}`}>
         <a href="#projects" onClick={() => setMobileOpen(false)}>{t.navProjects}</a><a href="#services" onClick={() => setMobileOpen(false)}>{t.navServices}</a><a href="#approach" onClick={() => setMobileOpen(false)}>{t.navAbout}</a><a href="#contact" onClick={() => setMobileOpen(false)}>{t.navContact}</a>
       </nav>
-      <div className="header-actions"><div className="language-switch" aria-label="Choose language"><button className={lang === 'en' ? 'active' : ''} onClick={() => switchLanguage('en')}>EN</button><span>/</span><button className={lang === 'fa' ? 'active' : ''} onClick={() => switchLanguage('fa')}>فا</button></div><button className="menu-toggle" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle navigation">{mobileOpen ? <X size={21}/> : <Menu size={21}/>}</button></div>
+      <div className="header-actions"><button className="theme-toggle" type="button" onClick={toggleTheme} aria-label={theme === 'dark' ? (isFa ? 'فعال کردن حالت روز' : 'Switch to light mode') : (isFa ? 'فعال کردن حالت شب' : 'Switch to dark mode')} title={theme === 'dark' ? (isFa ? 'حالت روز' : 'Light mode') : (isFa ? 'حالت شب' : 'Dark mode')}>{theme === 'dark' ? <Sun size={18}/> : <Moon size={18}/>}</button><div className="language-switch" aria-label="Choose language"><button className={lang === 'en' ? 'active' : ''} onClick={() => switchLanguage('en')}>EN</button><span>/</span><button className={lang === 'fa' ? 'active' : ''} onClick={() => switchLanguage('fa')}>فا</button></div><button className="menu-toggle" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle navigation">{mobileOpen ? <X size={21}/> : <Menu size={21}/>}</button></div>
     </header>
 
     <main id="top">
@@ -117,11 +119,16 @@ function App() {
       </section>
 
       <section id="projects" className="section shell"><div className="section-head"><div><div className="section-label"><span>01</span>{t.sectionLabel}</div><h2>{t.projectsTitle}</h2></div><p>{t.projectsIntro}</p></div>
-        <div className="projects-grid">{projects.map((project) => <article className={`project-card project-${project.visual}`} key={project.number}><div className="project-visual"><div className="project-topline"><span>PROJECT / {project.number}</span><span className={project.visual === 'dashboard' ? 'concept-tag' : 'live-tag'}>{project.visual === 'dashboard' ? t.concept : 'WEB EXPERIENCE'}</span></div>
-          {project.visual === 'bike' && <div className="bike-mock"><div className="mock-brand">VELO<span>+</span></div><div className="mock-copy"><small>RIDE YOUR WAY</small><strong>Find your<br/>next ride.</strong><i>Explore collection ↗</i></div><div className="bike-shape"><div className="wheel wheel-one"/><div className="wheel wheel-two"/><span className="frame frame-a"/><span className="frame frame-b"/><span className="frame frame-c"/><span className="frame frame-d"/><span className="handle"/><span className="seat"/></div><div className="mock-pill">CITY · TRAIL · ROAD</div></div>}
-          {project.visual === 'motor' && <div className="motor-mock"><div className="motor-sidebar"><b>m<span>m</span></b><i/><i/><i/><i/></div><div className="motor-content"><div className="motor-heading"><span>Find your machine</span><small>EXPLORE LISTINGS</small></div><div className="motor-search">⌕ <span>Search motorcycles...</span><b>FILTER</b></div><div className="motor-products"><div className="motor-product product-red"><span className="motor-bike-shape"/><small>SPORT · 2024</small><b>Racer 650</b><i>$ 8,900</i></div><div className="motor-product product-blue"><span className="motor-bike-shape"/><small>STREET · 2023</small><b>Urban X</b><i>$ 6,450</i></div></div></div></div>}
-          {project.visual === 'dashboard' && <div className="dash-mock"><div className="dash-sidebar"><div className="dash-logo">N<span>.</span></div><span className="dash-side-active">▦</span><span>◷</span><span>⌁</span><span>⚙</span></div><div className="dash-main"><div className="dash-title"><span>Business overview</span><b>↗</b></div><div className="dash-metrics"><div><small>VISITORS</small><b>2,480</b><i>↗ 12.8%</i></div><div><small>CONVERSION</small><b>3.6%</b><i>↗ 0.8%</i></div></div><div className="dash-chart"><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/></div><div className="dash-bottom"><span/><span/><span/></div></div></div>}
-        </div><div className="project-info"><div className="project-meta"><span>{project.type}</span><span>{project.number} / 03</span></div><h3>{project.title[lang]}</h3><p>{project.description[lang]}</p><div className="tag-row">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-links">{project.url ? <><a href={project.url} target="_blank" rel="noreferrer">{t.live}<ExternalLink size={14}/></a><a href={project.repo} target="_blank" rel="noreferrer">{t.source}<Code2 size={14}/></a></> : <span className="concept-note"><Sparkles size={14}/>{t.conceptNote}</span>}</div></div></article>)}</div>
+        <div className="projects-grid">{projects.map((project) => <article className={`project-card project-${project.visual}`} key={project.number}>
+          <div className="project-visual">
+            <div className="project-topline"><span>PROJECT / {project.number}</span><span className={project.visual === 'dashboard' ? 'concept-tag' : 'live-tag'}>{project.visual === 'dashboard' ? t.concept : 'LIVE SITE PREVIEW'}</span></div>
+            {project.url ? <div className="live-preview">
+              <iframe src={project.url} title={`${project.title.en} live website preview`} loading="lazy" tabIndex="-1" aria-hidden="true" />
+              <a className="preview-open" href={project.url} target="_blank" rel="noreferrer">{t.live} <ExternalLink size={13}/></a>
+            </div> : <div className="dash-mock"><div className="dash-sidebar"><div className="dash-logo">N<span>.</span></div><span className="dash-side-active">▦</span><span>◷</span><span>⌁</span><span>⚙</span></div><div className="dash-main"><div className="dash-title"><span>Business overview</span><b>↗</b></div><div className="dash-metrics"><div><small>VISITORS</small><b>2,480</b><i>↗ 12.8%</i></div><div><small>CONVERSION</small><b>3.6%</b><i>↗ 0.8%</i></div></div><div className="dash-chart"><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/><span/></div><div className="dash-bottom"><span/><span/><span/></div></div><span className="concept-watermark">CONCEPT ONLY</span></div>}
+          </div>
+          <div className="project-info"><div className="project-meta"><span>{project.type}</span><span>{project.number} / 03</span></div><h3>{project.title[lang]}</h3><p>{project.description[lang]}</p><div className="tag-row">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><div className="project-links">{project.url ? <><a href={project.url} target="_blank" rel="noreferrer">{t.live}<ExternalLink size={14}/></a><a href={project.repo} target="_blank" rel="noreferrer">{t.source}<Github size={14}/></a></> : <span className="concept-note"><Sparkles size={14}/>{t.conceptNote}</span>}</div></div>
+        </article>)}</div>
       </section>
 
       <section id="services" className="section section-muted"><div className="shell"><div className="section-head"><div><div className="section-label"><span>02</span>{t.sectionServices}</div><h2>{t.servicesTitle}</h2></div><p>{t.servicesIntro}</p></div><div className="services-grid">
