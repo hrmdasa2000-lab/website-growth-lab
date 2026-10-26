@@ -115,7 +115,12 @@ function App() {
       <section className="hero shell">
         <div className="hero-copy"><div className="eyebrow"><span className="eyebrow-line" />{t.eyebrow}</div><h1>{t.hero1}<br/><span>{t.hero2}</span></h1><p className="hero-intro">{t.intro}</p><div className="hero-actions"><a className="button button-primary" href="#projects">{t.ctaProjects}<ArrowDownRight size={17}/></a><a className="button button-quiet" href="#contact">{t.ctaContact}<ArrowUpRight size={17}/></a></div><div className="hero-proof"><div className="proof-avatars"><span>W</span><span>UX</span><span>AI</span></div><span>{isFa ? 'توسعه وب، تجربه کاربری و راهکارهای کاربردی' : 'Web, user experience & practical solutions'}</span></div></div>
         <div className="hero-art" aria-label="Abstract digital workspace illustration"><div className="art-orbit orbit-one"/><div className="art-orbit orbit-two"/><div className="art-core"><div className="core-top"><span/><span/><span/><b>studio / 01</b></div><div className="core-content"><div className="code-line short"/><div className="code-line medium"/><div className="code-line long"/><div className="code-line medium accent"/><div className="code-line short"/><div className="code-cursor"/></div><div className="core-footer"><span>BUILD</span><span>·</span><span>TEST</span><span>·</span><span>IMPROVE</span></div></div><div className="float-card float-card-top"><span className="float-icon purple"><Gauge size={17}/></span><span><b>UX / UI</b><small>Clearer journeys</small></span><i className="status-dot"/></div><div className="float-card float-card-bottom"><span className="float-icon green"><Zap size={17}/></span><span><b>AI workflow</b><small>Less repetitive work</small></span><ArrowUpRight size={15}/></div><div className="art-cross cross-a">+</div><div className="art-cross cross-b">+</div><div className="art-caption">IDEAS → INTERFACES → IMPACT</div></div>
-        <div className="hero-bottom"><div className="hero-mini"><Code2 size={18}/><span>{t.mini1}</span></div><div className="hero-mini"><MonitorSmartphone size={18}/><span>{t.mini2}</span></div><div className="hero-mini"><Workflow size={18}/><span>{t.mini3}</span></div></div>
+        <img
+  src={`https://image.thum.io/get/width/1200/crop/800/noanimate/${project.url}`}
+  alt={`${project.title.en} website screenshot`}
+  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+  loading="lazy"
+/>
       </section>
 
       <section id="projects" className="section shell"><div className="section-head"><div><div className="section-label"><span>01</span>{t.sectionLabel}</div><h2>{t.projectsTitle}</h2></div><p>{t.projectsIntro}</p></div>
