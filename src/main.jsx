@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
-import { ArrowDownRight, ArrowUpRight, Code2, Globe2, Layers3, Zap, Menu, X, CheckCircle2, ExternalLink, Github, Mail, Sparkles, MonitorSmartphone, Workflow, Gauge, ShieldCheck, Send, Copy, Check, Moon, Sun } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight, Code2, Globe2, Layers3, Zap, Menu, X, CheckCircle2, ExternalLink, Mail, Sparkles, MonitorSmartphone, Workflow, Gauge, ShieldCheck, Send, Copy, Check, Moon, Sun } from 'lucide-react';
 import './styles.css';
 
 const projects = [
