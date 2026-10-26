@@ -12,7 +12,7 @@ const projects = [
   {
     number: '02', type: 'Marketplace concept', title: { en: 'Motor Market', fa: 'موتور مارکت' },
     description: { en: 'A marketplace-style website concept that organizes listings and helps users scan product information more easily.', fa: 'نمونه سایت با ساختار مارکت‌پلیس برای مرتب‌سازی آگهی‌ها و خواناتر کردن اطلاعات محصولات.' },
-    tags: ['Marketplace', 'UI structure', 'Responsive layout'], url: 'https://hrmdasa2000-lab..io/motorMarket/', repo: 'https://.com/hrmdasa2000-lab/motorMarket', visual: 'motor'
+    tags: ['Marketplace', 'UI structure', 'Responsive layout'], url: 'https://hrmdasa2000-lab.github.io/motorMarket/', repo: 'https://github.com/hrmdasa2000-lab/motorMarket', visual: 'motor'
   },
   {
     number: '03', type: 'Concept / in progress', title: { en: 'Business Growth Dashboard', fa: 'داشبورد رشد کسب‌وکار' },
